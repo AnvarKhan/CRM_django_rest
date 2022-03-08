@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from common.views import HomeView, SignUpView, DashboardView
+from common.views import HomeView, SignUpView, DashboardView, ProfileView, ProfileUpdateView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -24,7 +24,7 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
 
-    #Authentication
+    # Authentication
 
     path('register/', SignUpView.as_view(), name='register'),
 
@@ -47,13 +47,13 @@ urlpatterns = [
         name='change-password'
     ),
 
-    #Forgot Password
+    # Forgot Password
     path('password-reset/',
          auth_views.PasswordResetView.as_view(
              template_name='common/password-reset/password_reset.html',
              subject_template_name='common/password-reset/password_reset_subject.html',
              email_template_name='common/password-reset/password_reset_email.html',
-            # success_url='/login/'
+             # success_url='/login/'
          ),
          name='password_reset'),
     path('password-reset/done',
@@ -71,5 +71,13 @@ urlpatterns = [
              template_name='common/password-reset/password_reset_complete.html',
          ),
          name='password_reset_complete'),
+    path('profile/', ProfileView.as_view(), name='profile'),
+    path('profile-update/', ProfileUpdateView.as_view(), name='profile-update')
 
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
