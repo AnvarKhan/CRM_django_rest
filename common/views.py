@@ -11,8 +11,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
-
 class HomeView(TemplateView):
     template_name = 'common/home.html'
 
