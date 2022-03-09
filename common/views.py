@@ -1,8 +1,6 @@
-from django.shortcuts import render
 
 from django.views.generic import TemplateView, CreateView
 
-from .models import Product
 
 from .forms import SignUpForms
 
@@ -12,8 +10,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
 from .forms import UserForm, ProfileForm
-from django.contrib.auth.models import User
-from userprofile.models import Profile
 
 
 class HomeView(TemplateView):
@@ -50,7 +46,8 @@ class ProfileUpdateView(LoginRequiredMixin, TemplateView):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, 'Your profile was successfully updated!')
+
+            messages.error( request, 'Your profile was successfully updated!')
             return HttpResponseRedirect(reverse_lazy('profile'))
 
         context = self.get_context_data(
