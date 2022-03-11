@@ -49,15 +49,17 @@
                   <br>
                   <a href="{% url 'password_reset'%}" class="btn btn-success btn-block btn-lg">Forgot Password</a>
                   <hr>
-                  <a href="#" class="btn btn-facebook btn-user btn-block">
+                  <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-facebook btn-user btn-block">
                     <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                   </a>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="https://t.me/mukhtoroff99" target="_blank">You can contact me with this link.CLICK ME!</a>
+                    <a href="https://t.me/mukhtoroff99" class="btn btn-link btn-block btn-lg" target="_blank">
+                      Contact US! Click me!
+                    </a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="https://github.com/AnvarKhan" target="_blank">Here is GitHub Link.CLICK ME!</a>
+                    <a class="btn btn-primary btn-block btn-lg" href="https://github.com/AnvarKhan" target="_blank">GitHub</a>
                   </div>
                 </div>
               </div>

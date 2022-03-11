@@ -1,15 +1,14 @@
-
 from django.views.generic import TemplateView, CreateView
-
-
 from .forms import SignUpForms
-
 
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.contrib import messages
 from .forms import UserForm, ProfileForm
+from django.contrib.auth.models import User
+from userprofile.models import Profile
+
+from django.contrib import messages
 
 
 class HomeView(TemplateView):
@@ -19,6 +18,12 @@ class HomeView(TemplateView):
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'common/dashboard.html'
     login_url = reverse_lazy('home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(self.request.user.id)
+        context['book_list'] = self.request.user
+        return context
 
 
 class SignUpView(CreateView):

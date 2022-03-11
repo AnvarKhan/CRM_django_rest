@@ -12,7 +12,7 @@ class Profile(models.Model):
     profile_image = models.ImageField(default='default-avatar.png', upload_to='users/', null=True, blank=True)
 
     def __str__(self):
-        return self.user
+        return '%s %s' % (self.user.first_name, self.user.last_name)
 
 
 @receiver(post_save, sender=User)
